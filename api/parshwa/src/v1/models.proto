@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+package parshwa.src.v1;
+
+message Empty {}
+
+message UserToken {
+  string token = 1;
+}
+
+message Error {
+  string name = 1;
+  string message = 2;
+  int32 statusCode = 3;
+  string type = 4;
+}
+
+////////////////////////////
+// MODELS
+////////////////////////////
+enum UserTypes {
+  USER_TYPES_UNSPECIFIED = 0; 
+  USER_TYPES_ADMIN = 1; 
+  USER_TYPES_DEALER = 2; 
+  USER_TYPES_BACKOFFICE = 3;
+}
+
+message UserType {
+  UserTypes slug = 1;
+  string title = 2;
+  string description = 3;
+}
+
+message User {
+  string uuid = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+  UserType userType = 5;
+}
+
+message Media {
+  string uuid = 1;
+  string mimeType = 2;
+  string name = 3;
+  string title = 4;
+  string description = 5;
+  string url = 6;
+  string blocked = 7;
+  string createdAt = 8;
+  string updatedAt = 9;
+}
+
+message Notification {
+  string uuid = 1;
+  string title = 2;
+  string message = 3;
+  bool isRead = 4;
+  string modelType = 5;
+  string modelUUID = 6;
+  string createdAt = 7;
+  string updatedAt = 8;
+  User user = 9;
+}
+
+enum MessageTypes {
+  text = 0;
+  new_enquiry = 1;
+  enquired = 2;
+  available = 3;
+  placed_order = 4;
+  received_stock = 5;
+  dispatched = 6;
+  completed = 7;
+  cancelled = 8;
+}
+
+message Message {
+  string uuid = 1;
+  string message = 2;
+  MessageTypes type = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
+  User user = 6;
+}
+
+message Order {
+  string uuid = 1;
+}
+
+////////////////////////////
+// RESPONSES
+////////////////////////////
+message FetchNotificationsRequest {
+  UserToken userToken = 1;
+}
+message FetchNotificationsResponse {
+  repeated Notification notifications = 1;
+}
+
+message ListenNotificationsRequest {
+  UserToken userToken = 1;
+}
+message ListenNotificationsResponse {
+  Notification notification = 1;
+}
+
+message FetchMessagesRequest {
+  UserToken userToken = 1;
+  string roomUUID = 2;
+}
+message FetchMessagesResponse {
+  repeated Message messages = 1;
+}
+
+message ListenMessagesRequest {
+  UserToken userToken = 1;
+  string roomUUID = 2;
+}
+
+message ListenOrderRequest {
+  UserToken userToken = 1;
+}
+
+message ListenMessagesResponse {
+  repeated Message messages = 1;
+}
+
+message ListenOrdersResponse {
+  Order order = 1;
+}
+
+message PingResponse {
+  string pong = 1;
+}
+message PingRequest {}
+
+////////////////////////////
+// SERVICES
+////////////////////////////
+service NotificationService {
+  rpc FetchNotifications (FetchNotificationsRequest) returns (FetchNotificationsResponse);
+  rpc ListenNotifications (ListenNotificationsRequest) returns (stream ListenNotificationsResponse);
+  rpc Ping (PingRequest) returns (PingResponse);
+}
+
+service MessageService {
+  rpc FetchMessages (FetchMessagesRequest) returns (FetchMessagesResponse);
+  rpc LisenMessages (ListenMessagesRequest) returns (stream ListenMessagesResponse);
+  rpc ListenOrders (ListenOrderRequest) returns (stream ListenOrdersResponse);
+  rpc Ping (PingRequest) returns (PingResponse);
+}

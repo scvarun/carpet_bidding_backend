@@ -1,0 +1,25 @@
+{
+  "include": ["parshwa/**/*"],
+  "compilerOptions": {
+    "inlineSourceMap": true,
+    "lib": ["esnext.asynciterable", "ES2018", "dom"],
+    "outDir": "build",
+    "strict": false,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "esModuleInterop": true
+  },
+  "ts-node": {
+    "esm": true,
+    "swc": true
+  }
+}

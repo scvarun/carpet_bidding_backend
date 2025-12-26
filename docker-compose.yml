@@ -1,0 +1,76 @@
+version: "3.3"
+services:
+  nginx:
+    image: nginx:alpine
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./nginx:/etc/nginx/templates
+    ports:
+      - "${HTTP_PORT}:80"
+      - "${SSL_PORT}:443"
+    depends_on:
+      - api
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: parshwa
+      MYSQL_USER: parshwa_admin
+      MYSQL_PASSWORD: parshwa_admin
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    networks:
+      - default
+  api:
+    build: ./api
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:80
+    restart: always
+    command: "npm run start"
+    depends_on:
+      - db
+      - redis
+  redis:
+    image: "bitnami/redis:6.2"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      - default
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - ${PMA_PORT}:80
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 300M
+  envoy:
+    image: bitnami/envoy:latest
+    volumes:
+      - ./envoy.yaml:/opt/bitnami/envoy/conf/envoy.yaml
+    ports:
+      - "${NOTIFICATION_PORT}:8085"
+      - "${MESSAGE_PORT}:8086"
+    depends_on:
+      - api
+    restart: always
+  storage:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${AWS_ACCESS_KEY_ID}
+      MINIO_ROOT_PASSWORD: ${AWS_SECRET_KEY}
+    ports:
+      - "${STORAGE_PORT}:9000"
+      - "${STORAGE_CONSOLE_PORT}:9001"
+    volumes:
+      - ./storage:/data
+networks:
+  default:
