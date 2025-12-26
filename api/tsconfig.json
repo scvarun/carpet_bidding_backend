@@ -1,5 +1,5 @@
 {
-  "include": ["parshwa/**/*"],
+  "include": ["carpet/**/*"],
   "compilerOptions": {
     "inlineSourceMap": true,
     "lib": ["esnext.asynciterable", "ES2018", "dom"],

@@ -17,9 +17,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: parshwa
-      MYSQL_USER: parshwa_admin
-      MYSQL_PASSWORD: parshwa_admin
+      MYSQL_DATABASE: carpet
+      MYSQL_USER: carpet_admin
+      MYSQL_PASSWORD: carpet_admin
       MYSQL_ALLOW_EMPTY_PASSWORD: "no"
     networks:
       - default

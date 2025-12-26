@@ -3,4 +3,4 @@ npx grpc_tools_node_protoc \
   --ts_proto_out=. \
   --ts_proto_opt=outputServices=nice-grpc,outputServices=generic-definitions,useExactTypes=false \
   --proto_path=. \
-  parshwa/src/v1/models.proto
+  carpet/src/v1/models.proto

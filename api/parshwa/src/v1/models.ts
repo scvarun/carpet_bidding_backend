@@ -2,7 +2,7 @@
 import { CallContext, CallOptions } from "nice-grpc-common";
 import * as _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "parshwa.src.v1";
+export const protobufPackage = "carpet.src.v1";
 
 /**
  * //////////////////////////
@@ -1774,7 +1774,7 @@ export type NotificationServiceDefinition =
   typeof NotificationServiceDefinition;
 export const NotificationServiceDefinition = {
   name: "NotificationService",
-  fullName: "parshwa.src.v1.NotificationService",
+  fullName: "carpet.src.v1.NotificationService",
   methods: {
     fetchNotifications: {
       name: "FetchNotifications",
@@ -1836,7 +1836,7 @@ export interface NotificationServiceClient<CallOptionsExt = {}> {
 export type MessageServiceDefinition = typeof MessageServiceDefinition;
 export const MessageServiceDefinition = {
   name: "MessageService",
-  fullName: "parshwa.src.v1.MessageService",
+  fullName: "carpet.src.v1.MessageService",
   methods: {
     fetchMessages: {
       name: "FetchMessages",

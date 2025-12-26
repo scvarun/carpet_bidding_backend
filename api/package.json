@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node parshwa/src/index.ts",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js --dataSource parshwa/src/migration.config.ts",
+    "start": "ts-node carpet/src/index.ts",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js --dataSource carpet/src/migration.config.ts",
     "migration:create": "npm run typeorm migration:create",
     "migration:run": "npm run typeorm migration:run",
     "migration:revert": "npm run typeorm migration:revert",

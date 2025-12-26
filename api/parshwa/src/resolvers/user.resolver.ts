@@ -217,7 +217,7 @@ export class UserResolver {
       const msg = {
         from: config.sendgridFromEmail,
         to: config.sendgridFromEmail,
-        subject: 'New User - Parshwa Impex',
+        subject: 'New User - Carpet Bidding',
         text: 'A new user has just registered',
         html: 'User details<br />Email: ' + user.email + '<br />Name: ' + user.firstName + " " + + user.lastName + "<br />CompanyName: " + userProfile.companyName,
       };
@@ -443,7 +443,7 @@ export class UserResolver {
       const msg = {
         from: config.sendgridFromEmail,
         to: config.sendgridFromEmail,
-        subject: 'New User - Parshwa Impex',
+        subject: 'New User - Carpet Bidding',
         text: 'A new user has been added',
         html: 'User details<br />Email: ' + user.email + '<br />Name: ' + user.firstName + "<br />CompanyName: " + userProfile.companyName,
       };
@@ -549,7 +549,7 @@ export class UserResolver {
       const msg = {
         from: config.sendgridFromEmail,
         to: user.email,
-        subject: 'Account Blocked - Parshwa Impex',
+        subject: 'Account Blocked - Carpet Bidding',
         html: 'Your account has been blocked. If you have any query please contact us via emali or phone',
       };
       await sgMail.send(msg);
@@ -586,7 +586,7 @@ export class UserResolver {
       const msg = {
         from: config.sendgridFromEmail,
         to: user.email,
-        subject: 'Account Unblocked - Parshwa Impex',
+        subject: 'Account Unblocked - Carpet Bidding',
         html: 'Your account has been unblocked. Welcome aboard',
       };
       await sgMail.send(msg);
@@ -623,7 +623,7 @@ export class UserResolver {
       const msg = {
         from: config.sendgridFromEmail,
         to: user.email,
-        subject: 'Reset Password - Parshwa Impex',
+        subject: 'Reset Password - Carpet Bidding',
         text: 'Here is your new password.',
         html: 'Your new password is: ' + newPassword,
       };

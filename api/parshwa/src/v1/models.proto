@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package parshwa.src.v1;
+package carpet.src.v1;
 
 message Empty {}
 
