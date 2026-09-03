@@ -27,7 +27,7 @@ services:
     depends_on:
       - redis
   redis:
-    image: bitnami/redis:6.2
+    image: soldevelo/redis:6.2
     environment:
       - ALLOW_EMPTY_PASSWORD=no
       - REDIS_PASSWORD=${REDIS_PASSWORD}
