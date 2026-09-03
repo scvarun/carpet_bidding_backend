@@ -35,7 +35,7 @@ services:
       - db
       - redis
   redis:
-    image: "bitnami/redis:6.2"
+    image: "soldevelo/redis:6.2"
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
